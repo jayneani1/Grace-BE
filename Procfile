@@ -1,0 +1,1 @@
+web: gunicorn graceBE.wsgi --log-file -
