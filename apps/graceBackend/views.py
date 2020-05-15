@@ -8,18 +8,18 @@ from apps.graceBackend.models import Entry
 from .serializers import EntrySerializer
 
 class EntryViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
 
     def get_queryset(self):
-        queryset = Entry.objects.all().filter(owner=self.request.user)
+        queryset = Entry.objects.all()
         return queryset
 
     serializer_class = EntrySerializer
 
     def create(self, request, *args, **kwargs):
-        if request.user.is_anonymous:
-            raise PermissionDenied(
-                "Only logged in users with accounts can enter")
+       # if request.user.is_anonymous:
+        #    raise PermissionDenied(
+         #       "Only logged in users with accounts can enter")
         return super().create(request, *args, **kwargs)
 
     def destroy(self, request, *args, **kwargs):

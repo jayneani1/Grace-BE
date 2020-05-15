@@ -11,11 +11,15 @@ class Entry(models.Model):
         ('Sad', 'Sad'),
     )
     title = models.CharField(max_length=100)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     mood = MultiSelectField(choices = MOOD_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_public = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Entry'
+        verbose_name_plural = 'Entries'
 
     def __str__(self):
         return self.title
