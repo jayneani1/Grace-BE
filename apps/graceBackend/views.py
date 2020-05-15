@@ -17,7 +17,7 @@ class EntryViewSet(viewsets.ModelViewSet):
     serializer_class = EntrySerializer
 
     def create(self, request, *args, **kwargs):
-        print request.data
+        print(request.data)
        # if request.user.is_anonymous:
         #    raise PermissionDenied(
          #       "Only logged in users with accounts can enter")
